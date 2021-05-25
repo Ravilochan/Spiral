@@ -1,5 +1,6 @@
 import React , { useState} from 'react'
 import { Button, Form, Header, Segment } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 export default function EventForm({ setFormOpen, createEvent, selectedEvent, updateEvent}) {
     const initialValues = selectedEvent ?? {
@@ -53,7 +54,7 @@ export default function EventForm({ setFormOpen, createEvent, selectedEvent, upd
                     <input type='date' name="date" placeholder='Event Date' value={values.date} onChange={(e)=> handleInputChange(e)} />
                 </Form.Field>
                 <Button type='submit' floated='right' positive content="Submit" />
-                <Button onClick={() => setFormOpen(false)} type='cancel' content="Cancel" />
+                <Button as={Link} to='/events' type='cancel' content="Cancel" />
             </Form>
         </Segment>
     )
