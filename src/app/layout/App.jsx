@@ -5,9 +5,10 @@ import EventForm from '../../features/eventform/EventForm';
 import HomePage from '../../features/home/HomePage';
 import NavBar from '../../features/nav/Navbar';
 import { Container } from 'semantic-ui-react';
-import {Route} from "react-router-dom";
+import {Route , useLocation} from "react-router-dom";
 
 export default function App() {
+  const {key} = useLocation();
   return (
     <>
     <Route exact path='/' component={HomePage} />
@@ -19,7 +20,7 @@ export default function App() {
           <Container className='main'>
             <Route exact path='/events' component={EventDashboard} />
             <Route path='/events/:id' component={EventDetailer} />
-            <Route path={['/createEvent', '/manage/:id']} component={EventForm} />
+            <Route path={['/createEvent', '/manage/:id']} component={EventForm} key={key} />
           </Container>
         </>
       )}
