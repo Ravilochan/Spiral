@@ -4,20 +4,22 @@ import EventDetailedHeader from './EventDetailedHeader';
 import EventDetailedInfo from './EventDetailedInfo';
 import EventDetailedChat from './EventDetailedChat';
 import EventDetailedSidebar from './EventDetailedSidebar';
+import { useSelector } from 'react-redux';
 
-export default function EventDetailedPage() {
+export default function EventDetailedPage({match}) {
+    const event = useSelector(state => state.event.events.find(e => e.id === match.params.id));
     return (
         <Grid>
             <Grid.Column width={2}>
                    <h2>Hello Menu</h2>
                 </Grid.Column>
             <Grid.Column width={10}>
-                <EventDetailedHeader />
-                <EventDetailedInfo />
+                <EventDetailedHeader event={event} />
+                <EventDetailedInfo event={event} />
                 <EventDetailedChat />
             </Grid.Column>
             <Grid.Column width={4}>
-                <EventDetailedSidebar />
+                <EventDetailedSidebar attendees={event.attendees} />
             </Grid.Column>
         </Grid>
     )
