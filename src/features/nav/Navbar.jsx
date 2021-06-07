@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import SignedOutMenu from './SignedOutMenu';
 import SignedInMenu from './SignedInMenu';
 import { useSelector } from 'react-redux';
+
 export default function NavBar() {
   const {authenticated} = useSelector(state => state.auth);
 

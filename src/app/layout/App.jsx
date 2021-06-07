@@ -7,12 +7,14 @@ import NavBar from '../../features/nav/Navbar';
 import ModalManager from '../common/modals/ModalManganer';
 import { Container } from 'semantic-ui-react';
 import {Route , useLocation} from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   const {key} = useLocation();
   return (
     <>
     <ModalManager />
+    <Toaster />
     <Route exact path='/' component={HomePage} />
     <Route
       path={'/(.+)'}
