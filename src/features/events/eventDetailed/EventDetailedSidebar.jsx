@@ -16,7 +16,6 @@ export default function EventDetailedSidebar({attendees}) {
       </Segment>
       <Segment attached>
         <Item.Group relaxed divided>
-          <Item style={{ position: 'relative' }}>
           {attendees.map((attendee) => (
             <Item key={attendee.id} style={{ position: 'relative' }}>
               <Item.Image
@@ -30,7 +29,6 @@ export default function EventDetailedSidebar({attendees}) {
               </Item.Content>
             </Item>
           ))}
-          </Item>
         </Item.Group>
       </Segment>
     </>
