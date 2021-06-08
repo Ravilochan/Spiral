@@ -35,3 +35,10 @@ export function deleteEvent(eventId) {
         payload: eventId
     }
 }
+
+export function listenToEvents(events) {
+    return {
+        type: FETCH_EVENTS,
+        payload: events
+    }
+}
