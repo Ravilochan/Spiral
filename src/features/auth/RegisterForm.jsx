@@ -6,36 +6,38 @@ import TextInput from '../../app/common/form/TextInput';
 import { Button, Label, Divider } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../app/common/modals/modalReducer';
-import { signInWithEmail } from '../../app/firestore/firebaseService';
+import { registerInFirebase } from '../../app/firestore/firebaseService';
 import SocialLogin from './SocialLogin';
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const dispatch = useDispatch();
 
     return (
-        <ModalWrapper size='tiny' header='Sign in to Re-vents'>
+        <ModalWrapper size='tiny' header='Register to Re-vents'>
             <Formik
-                initialValues={{email: '', password: ''}}
+                initialValues={{displayName: '', email: '', password: ''}}
                 validationSchema={Yup.object({
+                    displayName: Yup.string().required(),
                     email: Yup.string().required().email(),
                     password: Yup.string().required()
                 })}
                 onSubmit={async (values, {setSubmitting, setErrors}) => {
                     try {
-                        await signInWithEmail(values);
+                        await registerInFirebase(values);
                         setSubmitting(false);
                         dispatch(closeModal());
                     } catch (error) {
-                        setErrors({auth: 'Problem with username or password'});
+                        setErrors({auth: error.message});
                         setSubmitting(false);
                     }
                 }}
             >
-                    {({isSubmitting, isValid, dirty, errors}) => (
+                {({isSubmitting, isValid, dirty, errors}) => (
                     <Form className='ui form'>
+                        <TextInput name='displayName' placeholder='DisplayName' />
                         <TextInput name='email' placeholder='Email Address' />
                         <TextInput name='password' placeholder='Password' type='password' />
-                        {errors.auth && <Label color='red' style={{marginBottom: 10}} content={errors.auth} />}
+                        {errors.auth && <Label basic color='red' style={{marginBottom: 10}} content={errors.auth} />}
                         <Button 
                             loading={isSubmitting}
                             disabled={!isValid || !dirty || isSubmitting}
@@ -43,7 +45,7 @@ export default function LoginForm() {
                             fluid
                             size='large'
                             color='teal'
-                            content='Login'
+                            content='Register'
                         />
                         <Divider horizontal>Or</Divider>
                         <SocialLogin />
