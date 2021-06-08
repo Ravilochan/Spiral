@@ -1,6 +1,7 @@
 import React from 'react';
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard';
 import EventDetailer from '../../features/events/eventDetailed/EventDetailed';
+import ProfilePage from '../../features/profiles/profilePage/ProfilePage';
 import EventForm from '../../features/eventform/EventForm';
 import HomePage from '../../features/home/HomePage';
 import NavBar from '../../features/nav/Navbar';
@@ -33,6 +34,7 @@ export default function App() {
             <Route path='/events/:id' component={EventDetailer} />
             <Route path={['/createEvent', '/manage/:id']} component={EventForm} key={key} />
             <Route path='/account' component={AccountPage} />
+            <Route path='/profile/:id' component={ProfilePage} />
             <Route path='/error' component={ErrorComponent} />
           </Container>
         </>
