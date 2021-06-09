@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { updateUserProfile } from '../../../app/firestore/firestoreService';
 
-export default function ProfileForm({profile}) {
+export default function ProfileForm({profile , setEditMode}) {
     return (
         <Formik
             initialValues={{
@@ -24,6 +24,7 @@ export default function ProfileForm({profile}) {
                     toast.error(error.message);
                 } finally {
                     setSubmitting(false);
+                    setEditMode(false);
                 }
             }}
         >
