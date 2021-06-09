@@ -5,10 +5,10 @@ import AboutTab from './AboutTab';
 export default function ProfileContent({profile, isCurrentUser}) {
     const panes = [
         {menuItem: 'About', render: () => <AboutTab profile={profile} isCurrentUser={isCurrentUser} />},
-        {menuItem: 'Photos', render: () => <Tab.Pane>Photos</Tab.Pane>},
-        {menuItem: 'Events', render: () => <Tab.Pane>Events</Tab.Pane>},
-        {menuItem: 'Followers', render: () => <Tab.Pane>Followers</Tab.Pane>},
-        {menuItem: 'Following', render: () => <Tab.Pane>Following</Tab.Pane>},
+        {menuItem: 'Chats', render: () => <Tab.Pane>Chats <p> open chat window </p></Tab.Pane>},
+        {menuItem: 'Events', render: () => <Tab.Pane>Events <p> Redirect to main events page</p></Tab.Pane>},
+        {menuItem: 'Forms', render: () => <Tab.Pane>Forms <p> open forms page (if forms there show)</p></Tab.Pane>},
+        {menuItem: 'Parent Teacher Meet', render: () => <Tab.Pane>PTM <p>go to ptm feature</p></Tab.Pane>},
     ]
 
     return (
