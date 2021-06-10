@@ -10,6 +10,7 @@ export default function ProfileContent({profile, isCurrentUser}) {
         {menuItem: 'Events', render: () => <Tab.Pane>Events</Tab.Pane>},
         {menuItem: 'Followers', render: () => <Tab.Pane>Followers</Tab.Pane>},
         {menuItem: 'Following', render: () => <Tab.Pane>Following</Tab.Pane>},
+
     ]
 
     return (
