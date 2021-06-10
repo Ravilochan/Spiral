@@ -24,9 +24,7 @@ export default function EventForm({ match, history }) {
   const dispatch = useDispatch();
   const [loadingCancel, setLoadingCancel] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const selectedEvent = useSelector((state) =>
-    state.event.events.find((e) => e.id === match.params.id)
-  );
+  const selectedEvent = useSelector((state) =>state.event);
   const { loading, error } = useSelector((state) => state.async);
 
   const initialValues = selectedEvent ?? {
@@ -70,7 +68,12 @@ export default function EventForm({ match, history }) {
   if (loading)
     return <LoadingComponent content='Loading event...' />;
 
-  if (error) return <Redirect to='/error' />;
+  if (error) 
+  {
+    console.log(error)
+    return <Redirect to='/error' />;
+  }
+
 
     return (
         <Segment clearing>
