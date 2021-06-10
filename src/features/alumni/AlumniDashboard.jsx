@@ -28,7 +28,7 @@ export default function AlumniDashboard() {
                 placeholder="Roll Number(without last three digits)"
               />
             </Form.Group>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Search</Button>
           </Form>
         </Segment>
       </Grid.Column>
