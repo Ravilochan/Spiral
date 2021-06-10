@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Segment, Input } from "semantic-ui-react";
+import { Grid, Segment, Input, Message, Icon } from "semantic-ui-react";
 export default function ChatDashboard() {
   return (
     <Grid>
@@ -17,10 +17,34 @@ export default function ChatDashboard() {
         <h1>Chat</h1>
         <Segment.Group>
           <div>
-            <Segment color="red">Hi Ravi</Segment>
-            <Segment color="blue">Hey Aryan</Segment>
-            <Segment color="red">This Works</Segment>
-            <Segment color="blue">Yes it does</Segment>
+            <Segment color="red">
+              <h4>
+                <Icon name="user" />
+                Aryan
+              </h4>
+              <Message color="red">Hi Ravi</Message>
+            </Segment>
+            <Segment color="blue">
+              <h4>
+                <Icon name="user outline" />
+                Ravi
+              </h4>
+              <Message color="blue">Hey Aryan</Message>
+            </Segment>
+            <Segment color="red">
+              <h4>
+                <Icon name="user" />
+                Aryan
+              </h4>
+              <Message color="red">This wroks</Message>
+            </Segment>
+            <Segment color="blue">
+              <h4>
+                <Icon name="user outline" />
+                Ravi
+              </h4>
+              <Message color="blue">It sure does</Message>
+            </Segment>
             <Segment>
               <Input fluid icon="send" placeholder="Enter Text..." size="big" />
             </Segment>
