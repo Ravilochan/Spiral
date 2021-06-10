@@ -1,6 +1,8 @@
 import React from 'react';
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard';
 import EventDetailer from '../../features/events/eventDetailed/EventDetailed';
+import AlumniDashboard from '../../features/alumni/AlumniDashboard';
+import ProjectDashboard from '../../features/projects/ProjectDashboard.jsx';
 import ProfilePage from '../../features/profiles/profilePage/ProfilePage';
 import EventForm from '../../features/eventform/EventForm';
 import HomePage from '../../features/home/HomePage';
@@ -34,6 +36,8 @@ export default function App() {
             <Route path='/events/:id' component={EventDetailer} />
             <Route path={['/createEvent', '/manage/:id']} component={EventForm} key={key} />
             <Route path='/account' component={AccountPage} />
+            <Route path='/alumni' component={AlumniDashboard} />
+            <Route path='/project' component={ProjectDashboard} />
             <Route path='/profile/:id' component={ProfilePage} />
             <Route path='/error' component={ErrorComponent} />
           </Container>

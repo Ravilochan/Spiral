@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { signOutFirebase } from '../../app/firestore/firebaseService';
 
@@ -19,7 +20,9 @@ export default function SignedInMenu() {
   }
 
   return (
-    <Menu.Item position='right'>
+    <>
+ <Menu.Item position='right' as={NavLink} to='/chat' icon="chat" name="Messages"/>
+    <Menu.Item>
       <Image avatar spaced='right' src={currentUserProfile?.photoURL || '/assets/user.png'} />
       <Dropdown pointing='top left' text={currentUserProfile?.displayName}>
         <Dropdown.Menu>
@@ -30,5 +33,5 @@ export default function SignedInMenu() {
         </Dropdown.Menu>
       </Dropdown>
     </Menu.Item>
-  );
+  </>);
 }	

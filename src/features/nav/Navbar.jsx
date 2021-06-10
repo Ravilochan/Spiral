@@ -16,13 +16,15 @@ export default function NavBar() {
           Spiral
         </Menu.Item>
         <Menu.Item as={NavLink} to='/events' name='Events' />
+        <Menu.Item as={NavLink} to='/alumni' name='Alumni' />
+        <Menu.Item as={NavLink} to='/project' name='Project Repository' />
         {authenticated && (
           <Menu.Item as={NavLink} to='/createEvent'>
             <Button positive inverted content='Create Event' />
           </Menu.Item>
         )}
         {authenticated ? (
-         <SignedInMenu />
+        <SignedInMenu />
         ) : (
           <SignedOutMenu />
         )}
