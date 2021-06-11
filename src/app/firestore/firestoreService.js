@@ -79,6 +79,7 @@ export function setUserProfileData(user) {
       displayName: user.displayName,
       email: user.email,
       photoURL: user.photoURL || null,
+      socketId : null,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 }
@@ -101,6 +102,14 @@ export async function updateUserProfile(profile) {
     }
 }
 
+export async function updateSocketId(id){
+    const user = firebase.auth().currentUser;
+    try {
+        await db.collection('users').doc(user.uid).update({socketId: id});
+    } catch (error) {
+        throw error;
+    }
+}
 
 export async function updateUserProfilePhoto(downloadURL, filename) {
     const user = firebase.auth().currentUser;

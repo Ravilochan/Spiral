@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import {Route , useLocation} from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
+import VideoDashboard from '../../features/video/VideoDashboard';
 
 export default function App() {
   const {key} = useLocation();
@@ -40,6 +41,7 @@ export default function App() {
             <Route path='/alumni' component={AlumniDashboard} />
             <Route path='/project' component={ProjectDashboard} />
             <Route path='/chat' component={ChatDashboard} />
+            <Route path='/video/:id' component={VideoDashboard} />
             <Route path='/profile/:id' component={ProfilePage} />
             <Route path='/error' component={ErrorComponent} />
           </Container>
