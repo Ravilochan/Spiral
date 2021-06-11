@@ -3,7 +3,7 @@ import { Grid} from 'semantic-ui-react'
 
 import { SocketContext } from '../../app/api/Context';
 
-export default function VideoContainer({profile}) {
+export default function VideoContainer() {
     const {callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(SocketContext);
     return (
         <Grid >

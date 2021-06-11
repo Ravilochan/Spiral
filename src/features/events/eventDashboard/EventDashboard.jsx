@@ -37,7 +37,7 @@ export default function EventDashboard() {
                 <Grid.Column width={10} >
                     <h1>MVSR ENGINEERING COLLEGE</h1>
                     <Segment raised center>
-                    <h2>Welcome(Put in center)</h2>
+                    <h2>Welcome</h2>
                     <Container>
                         <p>Here are the recent most events that took place in our college</p>
                     </Container>

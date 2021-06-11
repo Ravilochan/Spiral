@@ -1,7 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Segment, Grid, Item, Header, Statistic, Divider, Reveal, Button } from 'semantic-ui-react';
 
-export default function ProfileHeader({profile, isCurrentUser}) {
+export default function ProfileHeader({profile, isCurrentUser, url}) {
     return (
         <Segment>
             <Grid>
@@ -23,6 +24,8 @@ export default function ProfileHeader({profile, isCurrentUser}) {
                     {!isCurrentUser &&
                     <>
                     <Divider />
+                    <div style={{display:'flex'}}>
+                    <Button positive as={NavLink} to={`/video/${url.params?.id}`} icon="video" content="Video Call"/>
                     <Reveal animated='move'>
                         <Reveal.Content visible style={{width: '100%'}}>
                             <Button fluid color='teal' content='Following' />
@@ -31,6 +34,7 @@ export default function ProfileHeader({profile, isCurrentUser}) {
                             <Button basic fluid color='red' content='Unfollow' />
                         </Reveal.Content>
                     </Reveal>
+                    </div>
                     </>}
 
                 </Grid.Column>

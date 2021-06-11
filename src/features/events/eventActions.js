@@ -1,4 +1,4 @@
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, FETCH_EVENTS, LISTEN_TO_EVENT_CHAT } from './eventConstants';
+import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, FETCH_EVENTS, LISTEN_TO_EVENT_CHAT , LISTEN_TO_SELECTED_EVENT, CLEAR_SELECTED_EVENT} from './eventConstants';
 import {asyncActionStart, asyncActionFinish, asyncActionError} from '../../app/async/asyncReducer';
 import {fetchSampleData} from '../../app/api/mockApi';
 
@@ -49,3 +49,16 @@ export function listenToEventChat(comments) {
         payload: comments
     }
 }
+
+export function listenToSelectedEvent(event) {
+    return {
+      type: LISTEN_TO_SELECTED_EVENT,
+      payload: event,
+    };
+  }
+  
+  export function clearSelectedEvent() {
+    return {
+      type: CLEAR_SELECTED_EVENT
+    }
+  }
