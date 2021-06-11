@@ -14,7 +14,7 @@ export default function ChatDashboard() {
         </Segment.Group>
       </Grid.Column>
       <Grid.Column width={12}>
-        <h1>Chat</h1>
+        <h1>Conversation</h1>
         <Segment.Group>
           <div>
             <Segment color="red">
