@@ -47,7 +47,7 @@ export default function AlumniDashboard() {
               <Table.Row>
                 <Table.Cell>
                   <Header as="h4" image>
-                    <Image src="/images/woman1.jpg" rounded size="mini" />
+                    <Image src="/assets/user.png" rounded size="mini" />
                     <Header.Content>
                       Lena
                       <Header.Subheader>Human Resources</Header.Subheader>
@@ -59,7 +59,7 @@ export default function AlumniDashboard() {
               <Table.Row>
                 <Table.Cell>
                   <Header as="h4" image>
-                    <Image src="/images/man1.jpg" rounded size="mini" />
+                    <Image src="/assets/user.png" rounded size="mini" />
                     <Header.Content>
                       Matthew
                       <Header.Subheader>Fabric Design</Header.Subheader>
@@ -71,7 +71,7 @@ export default function AlumniDashboard() {
               <Table.Row>
                 <Table.Cell>
                   <Header as="h4" image>
-                    <Image src="/images/woman2.jpg" rounded size="mini" />
+                    <Image src="/assets/user.png" rounded size="mini" />
                     <Header.Content>
                       Lindsay
                       <Header.Subheader>Entertainment</Header.Subheader>
@@ -83,7 +83,7 @@ export default function AlumniDashboard() {
               <Table.Row>
                 <Table.Cell>
                   <Header as="h4" image>
-                    <Image src="/images/man2.jpg" rounded size="mini" />
+                    <Image src="/assets/user.png" rounded size="mini" />
                     <Header.Content>
                       Mark
                       <Header.Subheader>Executive</Header.Subheader>
