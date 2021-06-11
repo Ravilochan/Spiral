@@ -41,10 +41,10 @@ export default function App() {
             <Route path='/alumni' component={AlumniDashboard} />
             <Route path='/project' component={ProjectDashboard} />
             <Route path='/chat' component={ChatDashboard} />
-            <Route path='/video/:id' component={VideoDashboard} />
             <Route path='/profile/:id' component={ProfilePage} />
             <Route path='/error' component={ErrorComponent} />
           </Container>
+          <Route path='/video/:id' component={VideoDashboard} />
         </>
       )}
     />
