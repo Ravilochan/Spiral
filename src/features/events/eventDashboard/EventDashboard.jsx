@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState } from 'react'
 import { Grid, Container, Segment } from 'semantic-ui-react'
 import EventList from './EventList'
 import EventListItemPlaceholder from './EventListItemPlaceholder';
@@ -12,16 +12,29 @@ export default function EventDashboard() {
     const dispatch = useDispatch();
     const { events } = useSelector((state) => state.event);
     const { loading } = useSelector((state) => state.async);
+    const [predicate, setPredicate] = useState(
+        new Map([
+          ['startDate', new Date()],
+          ['filter', 'all'],
+        ])
+      );
     
+      function handleSetPredicate(key, value) {
+        setPredicate(new Map(predicate.set(key, value)));
+      }
+
     useFirestoreCollection({
-        query: () => listenToEventsFromFirestore(),
-        data: events => dispatch(listenToEvents(events)),
-        deps: [dispatch]
-      })
+        query: () => listenToEventsFromFirestore(predicate),
+        data: (events) => dispatch(listenToEvents(events)),
+        deps: [dispatch , predicate],
+      });
 
     return (
             <Grid>
-                <Grid.Column width={12} >
+                <Grid.Column width={2}>
+                   <h2>Hello Menu</h2>
+                </Grid.Column>
+                <Grid.Column width={10} >
                     <h1>MVSR ENGINEERING COLLEGE</h1>
                     <Segment raised center>
                     <h2>Welcome(Put in center)</h2>
@@ -30,12 +43,12 @@ export default function EventDashboard() {
                     </Container>
                     </Segment>
 
-                    {loading &&
+                    {loading && (
                      <>
                         <EventListItemPlaceholder />
                         <EventListItemPlaceholder />
                      </>
-                    }
+                    )}
                     <EventList events={events}/>
                 </Grid.Column>
                 <Grid.Column width={4}>
@@ -50,7 +63,7 @@ export default function EventDashboard() {
                             <li>Operating Manuals for Students and Institutions - AICTE Pragati and Saksham Schemes - Click Here</li>
                         </ul>
                     </Segment> 
-                    <EventFilters />   
+                    <EventFilters predicate={predicate} setPredicate={handleSetPredicate} loading={loading} />
                 </Grid.Column>
             </Grid>
     )
