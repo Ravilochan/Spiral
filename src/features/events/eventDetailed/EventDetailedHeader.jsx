@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import {format} from 'date-fns';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../../app/common/modals/modalReducer';
 import { addUserAttendance, cancelUserAttendance } from '../../../app/firestore/firestoreService';
 
 const eventImageStyle = {
@@ -21,12 +23,15 @@ const eventImageTextStyle = {
 
 export default function EventDetailedHeader({ event, isHost, isGoing }) {
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   async function handleUserJoinEvent() {
     setLoading(true);
     try {
       await addUserAttendance(event);
     } catch (error) {
+      if(error.message === "Cannot read property 'uid' of null"){
+        dispatch(openModal({modalType: 'LoginForm'}))
+      }
       toast.error(error.message);
     } finally {
       setLoading(false);
