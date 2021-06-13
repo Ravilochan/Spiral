@@ -42,8 +42,10 @@ export async function socialLogin(selectedProvider) {
   }
   try {
     const result = await firebase.auth().signInWithPopup(provider);
+    toast.success("SignIn Successful");
     console.log(result);
     if (result.additionalUserInfo.isNewUser) {
+      toast.success("Upadate you profile Data")
       await setUserProfileData(result.user);
     }
   } catch (error) {
