@@ -29,6 +29,7 @@ export default function ProfilePage({ match }) {
         <ProfileHeader
           profile={selectedUserProfile}
           isCurrentUser={currentUser?.uid === selectedUserProfile.id}
+          url={match}
         />
         <ProfileContent
           profile={selectedUserProfile}

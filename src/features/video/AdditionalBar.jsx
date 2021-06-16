@@ -4,7 +4,7 @@ import { SocketContext } from '../../app/api/Context'
 import {updateSocketId} from '../../app/firestore/firestoreService'
 
 export default function AdditionalBar({profile , user}) {
-    const { me, callAccepted, callEnded, leaveCall, callUser, call } = useContext(SocketContext);
+    const { me, callAccepted, callEnded, leaveCall, callUser} = useContext(SocketContext);
     const idToCall = profile.socketId;
     const [status, setStatus] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -14,9 +14,9 @@ export default function AdditionalBar({profile , user}) {
      {
         setStatus(true);
      }
-    console.log(me);
+    console.log("SocketID in Component",me);
 
-    }, [me]);
+    },[me]);
     return (
         <div style={{ display: 'flex', justifyContent: 'center' , marginTop:20}} >
             {/* <p>{me} == JOIN == {idToCall}</p> */}

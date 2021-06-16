@@ -5,7 +5,6 @@ const db = firebase.firestore();
 export function dataFromSnapshot(snapshot) {
     if (!snapshot.exists) return undefined;
     const data = snapshot.data();
-
     for (const prop in data) {
         if (data.hasOwnProperty(prop)) {
             if (data[prop] instanceof firebase.firestore.Timestamp) {
@@ -13,7 +12,6 @@ export function dataFromSnapshot(snapshot) {
             }
         }
     }
-
     return {
         ...data,
         id: snapshot.id
@@ -80,6 +78,9 @@ export function setUserProfileData(user) {
       email: user.email,
       photoURL: user.photoURL || null,
       socketId : null,
+      status: false,
+      role: "Student",
+      verified: false,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 }
