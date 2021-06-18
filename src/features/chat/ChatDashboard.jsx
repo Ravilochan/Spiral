@@ -1,20 +1,28 @@
 import React from "react";
-import { Grid, Segment, Input, Message, Icon } from "semantic-ui-react";
+import {
+  Grid,
+  Segment,
+  Input,
+  Message,
+  Icon,
+  Search,
+  Card,
+  Image,
+} from "semantic-ui-react";
 export default function ChatDashboard() {
   return (
     <Grid>
-      <Grid.Column width={4}>
-        <h1>Chats</h1>
+      <Grid.Column width={3}>
+        <Search />
         <Segment.Group raised>
-          <Segment>Top</Segment>
-          <Segment>Middle</Segment>
-          <Segment>Middle</Segment>
-          <Segment>Middle</Segment>
-          <Segment>Bottom</Segment>
+          <Segment>Staff 1</Segment>
+          <Segment>Staff 2</Segment>
+          <Segment>Student 1</Segment>
+          <Segment>Student 2</Segment>
+          <Segment>Group 1</Segment>
         </Segment.Group>
       </Grid.Column>
-      <Grid.Column width={12}>
-        <h1>Conversation</h1>
+      <Grid.Column width={10}>
         <Segment.Group>
           <div>
             <Segment color="red">
@@ -50,6 +58,28 @@ export default function ChatDashboard() {
             </Segment>
           </div>
         </Segment.Group>
+      </Grid.Column>
+      <Grid.Column width={3}>
+        <Segment>
+          <Card>
+            <Image
+              src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+              wrapped
+              ui={false}
+            />
+            <Card.Content>
+              <Card.Header>Ravi</Card.Header>
+              <Card.Meta>
+                <span className="date">(4/4) IT B</span>
+              </Card.Meta>
+              <Card.Description>Ravi is a colleague.</Card.Description>
+            </Card.Content>
+          </Card>
+          <h4>Files shared</h4>
+          <Card.Meta>
+            <span>None</span>
+          </Card.Meta>
+        </Segment>
       </Grid.Column>
     </Grid>
   );
