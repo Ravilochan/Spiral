@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Fuse from 'fuse.js';
+import { NavLink } from 'react-router-dom';
 import { Form, Grid, Segment, Header, Table, Item } from "semantic-ui-react";
 import {Projects} from '../../app/api/sampleProjects';
 
@@ -103,12 +104,12 @@ export default function ProjectDashboard() {
 <Segment>
         <Item.Group>
         {characterResults.map(character => {
-            const { title, description, guide, abstract,hostPhotoURL } = character;
+            const { title, description, guide, abstract,hostPhotoURL, RepoURL } = character;
             return (
     <Item style={{width:"100vh"}}>
       <Item.Image size='small' src={hostPhotoURL || '/assets/user.png'} />
       <Item.Content>
-        <Item.Header as='a'>{title}</Item.Header>
+        <Item.Header as={NavLink} to={{ pathname: RepoURL || 'https://cloud-campus-15a0d.web.app/project'}} target="_blank">{title}</Item.Header>
         <Item.Meta>{description}</Item.Meta>
         <Item.Description>
         {abstract}

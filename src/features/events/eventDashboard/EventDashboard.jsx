@@ -57,10 +57,9 @@ export default function EventDashboard() {
                         College Events.
                         <ul>
                             <li>OU Exam fee</li>
-                            <li>Declaration of Summer Vacation: Circular 06-05-2021</li>
                             <li>Sewing Machine Project Executed by the members of Street Cause MVSREC - Telecasted on I News TV Channel</li>
                             <li>Re-Admission of students during the academic year 2020-21</li>
-                            <li>Operating Manuals for Students and Institutions - AICTE Pragati and Saksham Schemes - Click Here</li>
+                            <li>Operating Manuals for Students and Institutions - AICTE Pragati and Saksham Schemes</li>
                         </ul>
                     </Segment> 
                     <EventFilters predicate={predicate} setPredicate={handleSetPredicate} loading={loading} />

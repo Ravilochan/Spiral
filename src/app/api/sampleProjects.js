@@ -41,6 +41,7 @@ export const Projects = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ',
         abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
         guide: 'Bob',
+        RepoURL:'https://github.com/Ravilochan/Spiral',
         hostPhotoURL: 'https://miro.medium.com/max/469/1*24oTbi-r9SXkkJjtV2_B2A.png',
         teamMembers: ['Aryan', ' Ravilochan ','Eshani']
     },
