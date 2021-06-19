@@ -1,30 +1,54 @@
-import React from "react";
-import { Button, Form, Grid, Segment, Header, Table } from "semantic-ui-react";
+import React, {useState} from "react";
+import Fuse from 'fuse.js';
+import { Form, Grid, Segment, Header, Table, Item } from "semantic-ui-react";
+import {Projects} from '../../app/api/sampleProjects';
 
 export default function ProjectDashboard() {
+  const [query, updateQuery] = useState('');
+
+  const fuse = new Fuse(Projects, {
+    keys: [
+      'title',
+      'description',
+      'attendees.displayName'
+    ],
+    includeScore: true
+  });
+  const results = fuse.search(query);
+  const characterResults = query ? results.map(character => character.item) : Projects;
+
+  function onSearch({ currentTarget }) {
+    updateQuery(currentTarget.value);
+  }
+
   return (
     <Grid>
-      <Grid.Column width={6}>
+      <Grid.Row>
+      <Grid.Column width={10}>
         <Segment inverted>
           <Form inverted>
+            <h1>Search Repositories</h1>
             <Form.Group widths="equal">
               <Form.Input
                 fluid
-                label="Project Title"
-                placeholder="Project Title"
+                // label="Search Repositories"
+                placeholder="Start Typing Project Name , Title , Abstract or Any Inforamtion"
+                onChange={onSearch}
+                value={query}
               />
             </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Input fluid label="Team Member" placeholder="Team Member" />
+            {/* <Form.Group widths="equal">
+              <Form.Input fluid label="Team Member" placeholder="Team Member" onChange={onSearch} value={query} />
             </Form.Group>
 
-            <Button type="submit">Search</Button>
+            <Button type="submit">Search</Button> */}
+            <h3 style={{marginBottom:"1em"}}> Related Information will be populated below 😃</h3>
           </Form>
         </Segment>
       </Grid.Column>
-      <Grid.Column width={10}>
+      <Grid.Column width={6}>
         <Segment>
-          <h1>Output</h1>
+          <h2>Top Results</h2>
           <Table basic="very" celled collapsing>
             <Table.Header>
               <Table.Row>
@@ -50,7 +74,7 @@ export default function ProjectDashboard() {
                 </Table.Cell>
                 <Table.Cell>Helmet detection</Table.Cell>
               </Table.Row>
-              <Table.Row>
+              {/* <Table.Row>
                 <Table.Cell>
                   <Header as="h4" image>
                     <Header.Content>
@@ -59,19 +83,42 @@ export default function ProjectDashboard() {
                   </Header>
                 </Table.Cell>
                 <Table.Cell>Image tampering detection</Table.Cell>
-              </Table.Row>
-              <Table.Row>
+              </Table.Row> */}
+              {/* <Table.Row>
                 <Table.Cell>
                   <Header as="h4" image>
                     <Header.Content>Rohit , Ashish, Kiran</Header.Content>
                   </Header>
                 </Table.Cell>
                 <Table.Cell>Disaster prediction system</Table.Cell>
-              </Table.Row>
+              </Table.Row> */}
             </Table.Body>
           </Table>
         </Segment>
       </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+<Segment>
+        <Item.Group>
+        {characterResults.map(character => {
+            const { title, description, guide, abstract } = character;
+            return (
+    <Item style={{width:"100vh"}}>
+      <Item.Image size='small' src='/assets/user.png' />
+      <Item.Content>
+        <Item.Header as='a'>{title}</Item.Header>
+        <Item.Meta>{description}</Item.Meta>
+        <Item.Description>
+        {abstract}
+        </Item.Description>
+        <Item.Extra>Guide : {guide}</Item.Extra>
+        </Item.Content>
+        </Item>
+        )
+        })} 
+    </Item.Group>
+    </Segment>
+    </Grid.Row>
     </Grid>
   );
 }

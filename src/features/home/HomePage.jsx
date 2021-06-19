@@ -9,6 +9,7 @@ export default function HomePage({history}) {
                     <Image size='massive' src='/assets/logo.png' style={{marginBottom: 12}} />
                     Spiral
                 </Header>
+                <h1> Cloud Campus</h1>
                 <Button onClick={() => history.push('/events')} size='huge' inverted>
                     Get started
                     <Icon name='right arrow' inverted />

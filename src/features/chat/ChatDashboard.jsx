@@ -1,6 +1,6 @@
 import React , { useState} from "react";
-import { Grid, Segment, Input, Message, Icon, Search, Card, Image } from "semantic-ui-react";
-import { Link, NavLink, Redirect } from 'react-router-dom';
+import { Grid, Segment, Search, Card, Image } from "semantic-ui-react";
+import { NavLink } from 'react-router-dom';
 import useFirestoreCollection from '../../app/hooks/useFirestoreCollection';
 import useFirestoreDoc from "../../app/hooks/useFirestoreDoc";
 import {listenToAllUsers, listenToSelectedUserProfile} from '../profiles/profileActions';
@@ -12,9 +12,9 @@ import ChatDetailed from "./ChatDetailed";
 export default function ChatDashboard({match}) {
   const dispatch = useDispatch();
   const { selectedUserProfile } = useSelector((state) => state.profile);
-  const { currentUser } = useSelector((state) => state.auth);
-  const { loading, error } = useSelector((state) => state.async);
-  const paramIdLength = match.params.id?.length || "null";
+  // const { currentUser } = useSelector((state) => state.auth);
+  // const { loading, error } = useSelector((state) => state.async);
+  // const paramIdLength = match.params.id?.length || "null";
   useFirestoreDoc({
     query: () => getUserProfile(match.params.id),
     data: (profile) => dispatch(listenToSelectedUserProfile(profile)),
