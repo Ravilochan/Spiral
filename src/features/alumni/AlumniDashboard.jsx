@@ -1,101 +1,65 @@
-import React from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Segment,
-  Header,
-  Image,
-  Table,
-} from "semantic-ui-react";
+import React, {useState} from "react";
+import Fuse from 'fuse.js';
+import { Form, Grid, Segment,Item } from "semantic-ui-react";
+import {Alumni} from '../../app/api/sampleAlumni';
 
-export default function AlumniDashboard() {
+export default function ProjectDashboard() {
+  const [query, updateQuery] = useState('');
+
+  const fuse = new Fuse(Alumni, {
+    keys: ['name', 'description', 'workplace'],
+    includeScore: true
+  });
+  const results = fuse.search(query);
+  const characterResults = query ? results.map(character => character.item) : Alumni;
+
+  function onSearch({ currentTarget }) {
+    updateQuery(currentTarget.value);
+  }
+
   return (
     <Grid>
+      <Grid.Row>
       <Grid.Column width={6}>
         <Segment inverted>
           <Form inverted>
-            <Form.Group widths="equal">
-              <Form.Input fluid label="Name" placeholder="Name" />
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Input fluid label="Roll Number" placeholder="Roll Number" />
-            </Form.Group>
+            <h1>Search Alumni</h1>
             <Form.Group widths="equal">
               <Form.Input
                 fluid
-                label="Class"
-                placeholder="Roll Number(without last three digits)"
+                // label="Search Repositories"
+                placeholder="Start Typing Name or Any Inforamtion"
+                onChange={onSearch}
+                value={query}
               />
             </Form.Group>
-            <Button type="submit">Search</Button>
+            <h3 style={{marginBottom:"1em"}}> Related Information will be populated 😃</h3>
           </Form>
         </Segment>
       </Grid.Column>
       <Grid.Column width={10}>
-        <Segment>
-          <h1>Output</h1>
-          <Table basic="very" celled collapsing>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Contact Info</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell>
-                  <Header as="h4" image>
-                    <Image src="/assets/user.png" rounded size="mini" />
-                    <Header.Content>
-                      Lena
-                      <Header.Subheader>Human Resources</Header.Subheader>
-                    </Header.Content>
-                  </Header>
-                </Table.Cell>
-                <Table.Cell>9999999999</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>
-                  <Header as="h4" image>
-                    <Image src="/assets/user.png" rounded size="mini" />
-                    <Header.Content>
-                      Matthew
-                      <Header.Subheader>Fabric Design</Header.Subheader>
-                    </Header.Content>
-                  </Header>
-                </Table.Cell>
-                <Table.Cell>8888888888</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>
-                  <Header as="h4" image>
-                    <Image src="/assets/user.png" rounded size="mini" />
-                    <Header.Content>
-                      Lindsay
-                      <Header.Subheader>Entertainment</Header.Subheader>
-                    </Header.Content>
-                  </Header>
-                </Table.Cell>
-                <Table.Cell>7777777777</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>
-                  <Header as="h4" image>
-                    <Image src="/assets/user.png" rounded size="mini" />
-                    <Header.Content>
-                      Mark
-                      <Header.Subheader>Executive</Header.Subheader>
-                    </Header.Content>
-                  </Header>
-                </Table.Cell>
-                <Table.Cell>6666666666</Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
-        </Segment>
-      </Grid.Column>
+<Segment>
+        <Item.Group>
+        {characterResults.map(character => {
+            const { name, photoURL, description , year, workplace} = character;
+            return (
+    <Item style={{width:"100vh"}}>
+      <Item.Image size='small' src={photoURL || '/assets/user.png'} />
+      <Item.Content>
+        <Item.Header as='a'>{name}</Item.Header>
+        <Item.Description>
+        {description}
+        <h4 style={{marginTop:"1em"}}>Workplace : {workplace}</h4>
+        </Item.Description>
+        <Item.Extra>Bacth of {year}</Item.Extra>
+      </Item.Content>
+    </Item>
+        )
+        })} 
+    </Item.Group>
+    </Segment>
+    </Grid.Column>
+    </Grid.Row>
     </Grid>
   );
 }

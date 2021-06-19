@@ -18,7 +18,7 @@ export const Projects = [
         tag: 'Data Science',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudinper.',
         abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-        guide: 'Bob',
+        guide: 'Ben',
         hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
         teamMembers: ['Aryan', ' Ravilochan ','Eshani']
     },
@@ -29,7 +29,7 @@ export const Projects = [
         tag: 'Software Developemnt',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin',
         abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-        guide: 'Bob',
+        guide: 'Kiran',
         hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
         teamMembers: ['Aryan', ' Ravilochan ','Eshani']
     },

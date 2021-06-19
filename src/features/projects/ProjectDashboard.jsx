@@ -10,7 +10,9 @@ export default function ProjectDashboard() {
     keys: [
       'title',
       'description',
-      'attendees.displayName'
+      'guide',
+      'tag',
+      'year'
     ],
     includeScore: true
   });
