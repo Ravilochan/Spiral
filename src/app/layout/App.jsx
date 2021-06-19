@@ -17,6 +17,7 @@ import { Container } from 'semantic-ui-react';
 import {Route , useLocation} from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
 import VideoDashboard from '../../features/video/VideoDashboard';
+import VideoChatContainer from '../../features/videoChat/VideoChatContainer';
 
 export default function App() {
   const {key} = useLocation();
@@ -45,6 +46,7 @@ export default function App() {
             <Route path='/error' component={ErrorComponent} />
           </Container>
           <Route path='/video/:id' component={VideoDashboard} />
+          <Route path='/videoChat' component={VideoChatContainer} />
         </>
       )}
     />

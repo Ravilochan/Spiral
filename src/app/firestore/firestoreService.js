@@ -208,3 +208,12 @@ export function addUserAttendance(event) {
           .orderBy('date');
     }
   }
+
+  export function getAllUsers(){
+      try{
+        return db.collection('users')
+      }
+      catch(error){
+          throw error;
+      }
+  }

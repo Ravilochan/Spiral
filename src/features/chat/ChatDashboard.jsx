@@ -1,29 +1,70 @@
-import React from "react";
-import {
-  Grid,
-  Segment,
-  Input,
-  Message,
-  Icon,
-  Search,
-  Card,
-  Image,
-} from "semantic-ui-react";
-export default function ChatDashboard() {
+import React , { useState} from "react";
+import { Grid, Segment, Input, Message, Icon, Search, Card, Image } from "semantic-ui-react";
+import { Link, NavLink, Redirect } from 'react-router-dom';
+import useFirestoreCollection from '../../app/hooks/useFirestoreCollection';
+import useFirestoreDoc from "../../app/hooks/useFirestoreDoc";
+import {listenToAllUsers, listenToSelectedUserProfile} from '../profiles/profileActions';
+import { getUserProfile , getAllUsers } from "../../app/firestore/firestoreService";
+import { useSelector, useDispatch } from 'react-redux';
+import Fuse from 'fuse.js';
+import ChatDetailed from "./ChatDetailed";
+
+export default function ChatDashboard({match}) {
+  const dispatch = useDispatch();
+  const { selectedUserProfile } = useSelector((state) => state.profile);
+  const { currentUser } = useSelector((state) => state.auth);
+  const { loading, error } = useSelector((state) => state.async);
+  const paramIdLength = match.params.id?.length || "null";
+  useFirestoreDoc({
+    query: () => getUserProfile(match.params.id),
+    data: (profile) => dispatch(listenToSelectedUserProfile(profile)),
+    deps: [dispatch, match.params.id],
+  });
+
+  const [isLoading, setLoading] = useState(false);
+  const [value, setValue] = useState('');
+  const { allUsers} = useSelector((state) => state.profile);
+  // const [searchData, setSearchData] = useState(allUsers)
+  useFirestoreCollection({
+    query: getAllUsers,
+    data: (users) => dispatch(listenToAllUsers(users)),
+    deps: [dispatch]
+  });
+  console.log(allUsers);
+  const fuse = new Fuse(allUsers)
+  const result = fuse.search(value)
+    // const finalResult = [];
+    // if (result.length) {
+    //   result.forEach((item) => {
+    //     finalResult.push(item.item);
+    //   });
+    //   setSearchData(finalResult);
+    //   setLoading(false)
+    // } else {
+    //   setSearchData([]);
+    //   setLoading(false);
+    // }
+  console.log(result)
   return (
     <Grid>
       <Grid.Column width={3}>
-        <Search />
-        <Segment.Group raised>
-          <Segment>Staff 1</Segment>
-          <Segment>Staff 2</Segment>
-          <Segment>Student 1</Segment>
-          <Segment>Student 2</Segment>
-          <Segment>Group 1</Segment>
+        <Search category
+            loading={isLoading}
+            results={result}
+            onSearchChange={(e)=>{setValue(e.target.value)
+            console.log(e.target.value)}}
+            searchFunction
+            value={value}/>
+        <Segment.Group>
+        {allUsers?.map((user) => (
+  <Segment as={NavLink} to={'/chat/'+user.id} key={user.id} style={{display:"flex"}}>
+  <Image avatar src={user.photoURL || '/assets/user.png'} style={{marginRight:"1em"}}/>
+  {user.displayName}</Segment>
+        ))}
         </Segment.Group>
       </Grid.Column>
       <Grid.Column width={10}>
-        <Segment.Group>
+  {/* {paramIdLength && <Segment.Group>
           <div>
             <Segment color="red">
               <h4>
@@ -58,21 +99,23 @@ export default function ChatDashboard() {
             </Segment>
           </div>
         </Segment.Group>
+  } */}
+        <ChatDetailed eventId={match.params.id} />
       </Grid.Column>
       <Grid.Column width={3}>
         <Segment>
           <Card>
             <Image
-              src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+              src={selectedUserProfile?.photoURL ||' /assets/user.png'}
               wrapped
               ui={false}
             />
             <Card.Content>
-              <Card.Header>Ravi</Card.Header>
+              <Card.Header>{selectedUserProfile?.displayName || "Ravi"}</Card.Header>
               <Card.Meta>
                 <span className="date">(4/4) IT B</span>
               </Card.Meta>
-              <Card.Description>Ravi is a colleague.</Card.Description>
+              <Card.Description>{selectedUserProfile?.email}</Card.Description>
             </Card.Content>
           </Card>
           <h4>Files shared</h4>

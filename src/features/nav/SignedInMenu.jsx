@@ -21,7 +21,8 @@ export default function SignedInMenu() {
 
   return (
     <>
- <Menu.Item position='right' as={NavLink} to='/chat' icon="chat" name="Messages"/>
+ <Menu.Item position='right' as={NavLink} to='/videoChat' icon="video" name="Video Calls"/>
+ <Menu.Item as={NavLink} to='/chat' icon="chat" name="Messages"/>
     <Menu.Item>
       <Image avatar spaced='right' src={currentUserProfile?.photoURL || '/assets/user.png'} />
       <Dropdown pointing='top left' text={currentUserProfile?.displayName}>
