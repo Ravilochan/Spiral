@@ -103,10 +103,10 @@ export default function ProjectDashboard() {
 <Segment>
         <Item.Group>
         {characterResults.map(character => {
-            const { title, description, guide, abstract } = character;
+            const { title, description, guide, abstract,hostPhotoURL } = character;
             return (
     <Item style={{width:"100vh"}}>
-      <Item.Image size='small' src='/assets/user.png' />
+      <Item.Image size='small' src={hostPhotoURL || '/assets/user.png'} />
       <Item.Content>
         <Item.Header as='a'>{title}</Item.Header>
         <Item.Meta>{description}</Item.Meta>

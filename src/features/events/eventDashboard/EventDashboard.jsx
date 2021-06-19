@@ -31,9 +31,9 @@ export default function EventDashboard() {
 
     return (
             <Grid>
-                <Grid.Column width={2}>
+                {/* <Grid.Column width={2}>
                    <h2>Hello Menu</h2>
-                </Grid.Column>
+                </Grid.Column> */}
                 <Grid.Column width={10} >
                     <h1>MVSR ENGINEERING COLLEGE</h1>
                     <Segment raised center>
@@ -51,8 +51,8 @@ export default function EventDashboard() {
                     )}
                     <EventList events={events}/>
                 </Grid.Column>
-                <Grid.Column width={4}>
-                    <h1>New notification column</h1> 
+                <Grid.Column width={6}>
+                    <h1>New notifications</h1> 
                     <Segment raised>
                         College Events.
                         <ul>

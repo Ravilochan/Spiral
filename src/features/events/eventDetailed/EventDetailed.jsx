@@ -35,15 +35,15 @@ export default function EventDetailedPage({ match }) {
     if (error) return <Redirect to='/error' />
     return (
         <Grid>
-            <Grid.Column width={2}>
+            {/* <Grid.Column width={2}>
                    <h2>Hello Menu</h2>
-                </Grid.Column>
+                </Grid.Column> */}
             <Grid.Column width={10}>
             <EventDetailedHeader event={event} isGoing={isGoing} isHost={isHost} />
                 <EventDetailedInfo event={event} />
                 <EventDetailedChat eventId={event.id} />
             </Grid.Column>
-            <Grid.Column width={4}>
+            <Grid.Column width={6}>
             <EventDetailedSidebar attendees={event?.attendees} hostUid={event.hostUid} />
             </Grid.Column>
         </Grid>
