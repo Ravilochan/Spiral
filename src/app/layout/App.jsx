@@ -8,6 +8,7 @@ import ProfilePage from '../../features/profiles/profilePage/ProfilePage';
 import EventForm from '../../features/eventform/EventForm';
 import HomePage from '../../features/home/HomePage';
 import NavBar from '../../features/nav/Navbar';
+import LiveStream from '../../features/live/LiveStream';
 import ErrorComponent from '../common/errors/ErrorComponent';
 import ModalManager from '../common/modals/ModalManganer';
 import LoadingComponent from './LoadingComponent';
@@ -16,7 +17,6 @@ import { useSelector } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import {Route , useLocation} from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
-import VideoDashboard from '../../features/video/VideoDashboard';
 import VideoChatContainer from '../../features/videoChat/VideoChatContainer';
 
 export default function App() {
@@ -43,9 +43,9 @@ export default function App() {
             <Route path='/project' component={ProjectDashboard} />
             <Route path='/chat' component={ChatDashboard} />
             <Route path='/profile/:id' component={ProfilePage} />
+            <Route path="/live" component={LiveStream} />
             <Route path='/error' component={ErrorComponent} />
           </Container>
-          <Route path='/video/:id' component={VideoDashboard} />
           <Route path='/videoChat' component={VideoChatContainer} />
         </>
       )}

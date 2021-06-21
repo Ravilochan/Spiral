@@ -15,9 +15,10 @@ export default function NavBar() {
           <img src='/assets/logo.png' alt='logo' style={{ marginRight: 15 }} />
           Spiral - Cloud Campus
         </Menu.Item>
-        <Menu.Item as={NavLink} to='/events' name='Events' />
-        <Menu.Item as={NavLink} to='/alumni' name='Alumni' />
-        <Menu.Item as={NavLink} to='/project' name='Project Repository' />
+        <Menu.Item as={NavLink} to='/events' icon="calendar" name='Events' />
+        <Menu.Item as={NavLink} to='/alumni' icon="address book" name='Alumni' />
+        <Menu.Item as={NavLink} to='/project' icon="github alternate" name='Project Repository' />
+        <Menu.Item as={NavLink} to="/live" icon="fire" name="Live" />
         {authenticated && (
           <Menu.Item as={NavLink} to='/createEvent'>
             <Button positive inverted content='Create Event' />

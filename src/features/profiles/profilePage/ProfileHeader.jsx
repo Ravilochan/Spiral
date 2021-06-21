@@ -25,7 +25,7 @@ export default function ProfileHeader({profile, isCurrentUser, url}) {
                     <>
                     <Divider />
                     <div style={{display:'flex'}}>
-                    <Button positive as={NavLink} to={`/video/${url.params?.id}`} icon="video" content="Video Call"/>
+                    <Button positive as={NavLink} to={`/videoChat`} icon="video" content="Video Call"/>
                     <Reveal animated='move'>
                         <Reveal.Content visible style={{width: '100%'}}>
                             <Button fluid color='teal' content='Following' />

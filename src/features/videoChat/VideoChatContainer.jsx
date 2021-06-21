@@ -3,7 +3,7 @@ import 'webrtc-adapter';
 import firebase from '../../app/config/firebase';
 import { doOffer, doAnswer, doLogin, doCandidate } from './modules/FirebaseModule';
 import { createOffer, initiateConnection, startCall, sendAnswer, addCandidate, initiateLocalStream, listenToConnectionEvents } from './modules/RTCModule';
-import VideoChat from './VideoChat';
+// import VideoChat from './VideoChat';
 import VideoChatChild from './VideoChatChild';
 
 class VideoChatContainer extends React.Component {
