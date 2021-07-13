@@ -4,6 +4,8 @@ import { useDispatch,useSelector } from 'react-redux';
 import {listenToAllUsers} from '../profiles/profileActions';
 import useFirestoreCollection from '../../app/hooks/useFirestoreCollection';
 import { getAllUsers } from '../../app/firestore/firestoreService';
+import { openModal } from '../../app/common/modals/modalReducer';
+import {toast} from 'react-hot-toast';
 
 export default function VideoChatChild({onLogin, startCall, setRemoteVideoRef, setLocalVideoRef, connectedUser}) {
     const { currentUser } = useSelector((state) => state.auth);
@@ -17,6 +19,25 @@ export default function VideoChatChild({onLogin, startCall, setRemoteVideoRef, s
         data: (users) => dispatch(listenToAllUsers(users)),
         deps: [dispatch]
       });
+    
+    function makingOnline(){
+        try{
+            onLogin(currentUser.uid);
+            console.log("CURRENT ID : "+currentUser.uid)
+            setLoggedIn(true); 
+            setCall(true);
+        }
+        catch(err){
+            if(err.message === "Cannot read property 'uid' of null")
+            {
+                toast.error("You need to logged-in to Make yourself Available")
+                dispatch(openModal({modalType: 'LoginForm'}))
+            }
+            else{
+                toast.error(err.message)
+            }
+        }
+    }  
     return (
         <Grid >
             <div style={{marginLeft:"2em"}}>
@@ -31,12 +52,7 @@ export default function VideoChatChild({onLogin, startCall, setRemoteVideoRef, s
                      window.history.back()
              }} content="Leave" />
               ) : (
-                <Button icon="video" color='teal' onClick={() =>{
-                    onLogin(currentUser.uid);
-                    console.log("CURRENT ID : "+currentUser.uid)
-                    setLoggedIn(true); 
-                    setCall(true);
-                }} content="Make Your Self Online" />
+                <Button icon="video" color='teal' onClick={makingOnline} content="Make Your Self Online" />
               )}
             </Grid.Row>
             <Grid.Row>
